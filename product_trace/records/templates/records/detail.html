@@ -1,0 +1,18 @@
+{% extends 'records/list.html' %}
+
+{% block table_content %}
+    <tr>
+        <th class="column2">{{ object.uid }}</th>
+        <th class="column3">{{ object.url }}</th>
+        <th class="column1">{{ object.created_time | date:"Y-m-d H:i" }}</th>
+        <th class="column1">{{ object.updated_time | date:"Y-m-d H:i" }}</th>
+        <th class="column4">
+            <button onclick="open_update('{{ object.uid }}', '{{ object.url }}', '{{ object.id }}')">
+                编辑
+            </button>
+        </th>
+        <th class="column6">
+            <button onclick="open_del('{{ object.id }}')">删除</button>
+        </th>
+    </tr>
+{% endblock %}

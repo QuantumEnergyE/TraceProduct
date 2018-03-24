@@ -38,7 +38,8 @@
                             <th class="column6">删除</th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="list_tbody">
+                        {% block table_content %}
                         {% for record in object_list %}
                             <tr>
                                 <th class="column2">{{ record.uid }}</th>
@@ -54,8 +55,9 @@
                                     <button onclick="open_del('{{ record.id }}')">删除</button>
                                 </th>
                             </tr>
-                            </tbody>
                         {% endfor %}
+                        {% endblock %}
+                        </tbody>
                     </table>
                 </div>
             </div>
