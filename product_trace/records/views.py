@@ -1,12 +1,13 @@
 from django.shortcuts import render
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Records
 
 # Create your views here.
 
 
-class RecordsList(ListView):
+class RecordsList(LoginRequiredMixin, ListView):
     model = Records
     template_name = "records/list.html"
 
@@ -17,27 +18,27 @@ class RecordsList(ListView):
         return self.model.objects.filter(uid=uid)
 
 
-class RecordsCreate(CreateView):
+class RecordsCreate(LoginRequiredMixin, CreateView):
     model = Records
     fields = ['uid', 'url']
     template_name = "records/create.html"
     success_url = '/records/list'
 
 
-class RecordsUpdate(UpdateView):
+class RecordsUpdate(LoginRequiredMixin, UpdateView):
     model = Records
     fields = ['uid', 'url']
     template_name = "records/update.html"
     success_url = '/records/list'
 
 
-class RecordsDelete(DeleteView):
+class RecordsDelete(LoginRequiredMixin, DeleteView):
     model = Records
     template_name = "records/delete.html"
     success_url = '/records/list'
 
 
-class RecordsDetail(DetailView):
+class RecordsDetail(LoginRequiredMixin, DetailView):
     model = Records
     template_name = "records/detail.html"
     success_url = '/records/list'

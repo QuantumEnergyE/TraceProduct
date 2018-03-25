@@ -19,7 +19,9 @@
 
     <div class="search_div">
         <div>
-            <button onclick="open_create()">新增记录</button>
+            {% if perms.records.add_records %}
+                <button onclick="open_create()">新增记录</button>
+            {% endif %}
         </div>
         <div class="query_div">
             <input id="search_input" type="text" placeholder="请输入货号进行检索">
@@ -51,12 +53,20 @@
                                     <th class="column1">{{ record.created_time | date:"Y-m-d H:i" }}</th>
                                     <th class="column1">{{ record.updated_time | date:"Y-m-d H:i" }}</th>
                                     <th class="column4">
-                                        <button onclick="open_update('{{ record.uid }}', '{{ record.url }}', '{{ record.id }}')">
-                                            编辑
-                                        </button>
+                                        {% if perms.records.change_records %}
+                                            <button onclick="open_update('{{ record.uid }}', '{{ record.url }}', '{{ record.id }}')">
+                                                编辑
+                                            </button>
+                                        {% else %}
+                                            <button>-</button>
+                                        {% endif %}
                                     </th>
                                     <th class="column6">
-                                        <button onclick="open_del('{{ record.id }}')">删除</button>
+                                        {% if perms.records.delete_records %}
+                                            <button onclick="open_del('{{ record.id }}')">删除</button>
+                                        {% else %}
+                                            <button>-</button>
+                                        {% endif %}
                                     </th>
                                 </tr>
                             {% endfor %}

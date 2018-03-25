@@ -3,7 +3,7 @@ from django.conf.urls import url
 from .views import RecordsList, RecordsCreate, RecordsUpdate, RecordsDelete, RecordsDetail
 
 urlpatterns = [
-    url('list', RecordsList.as_view()),
+    url('list', RecordsList.as_view(), name='records_list'),
     url('create', RecordsCreate.as_view()),
     url('update/(?P<pk>[0-9]+)', RecordsUpdate.as_view()),
     url('delete/(?P<pk>[0-9]+)', RecordsDelete.as_view()),
