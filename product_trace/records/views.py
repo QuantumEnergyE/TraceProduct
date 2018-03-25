@@ -10,6 +10,12 @@ class RecordsList(ListView):
     model = Records
     template_name = "records/list.html"
 
+    def get_queryset(self):
+        uid = self.request.GET.get('uid', None)
+        if not uid:
+            return self.model.objects.order_by('-updated_time')[:10]
+        return self.model.objects.filter(uid=uid)
+
 
 class RecordsCreate(CreateView):
     model = Records
