@@ -18,9 +18,13 @@
     <link rel="stylesheet" href="{% static 'css/records.css' %}">
 
     <div class="search_div">
-        <button onclick="open_create()">新增记录</button>
-        <input id="search_input" type="text" placeholder="请输入货号进行检索">
-        <button onclick="search()">查询</button>
+        <div>
+            <button onclick="open_create()">新增记录</button>
+        </div>
+        <div class="query_div">
+            <input id="search_input" type="text" placeholder="请输入货号进行检索">
+            <button onclick="search()">查询</button>
+        </div>
     </div>
 
     <div id="list_div" class="limiter">
@@ -67,14 +71,18 @@
     <div id="create_bg" class="bg_div">
         <div id="create_div">
             <form action="records/create" method="post"> {% csrf_token %}
-                <ul>
-                    <li class="uid"><input type="text" name="uid" maxlength="256" required id="id_uid"/></li>
-                    <li class="url"><input type="url" name="url" maxlength="200" required id="id_url"/></li>
-                </ul>
-                <div class="confirm_div">
-                    <input type="submit" value="确认"/>
-                    <button type="button" onclick="hide_bg()">取消</button>
-                </div>
+                <p>
+                    <label class="pop_label">货号</label>
+                    <input class="pop_input_text" type="text" name="uid" maxlength="256" required id="id_uid"/>
+                </p>
+                <p>
+                    <label class="pop_label">链接</label>
+                    <input class="pop_input_text" type="url" name="url" maxlength="200" required id="id_url"/>
+                </p>
+                <p>
+                    <input class="pop_input_btn" type="submit" value="确认"/>
+                    <input class="pop_input_btn" type="button" onclick="hide_bg()" value="取消"></input>
+                </p>
             </form>
         </div>
     </div>
@@ -84,17 +92,19 @@
         <div id="update_div">
             <form id="update_form" action="" method="post"> {% csrf_token %}
                 <p>
-                    <label for="id_uid">Uid:</label>
-                    <input id="update_uid" type="text" name="uid" value="" maxlength="256" required id="id_uid"/>
+                    <label class="pop_label">货号</label>
+                    <input class="pop_input_text" id="update_uid" type="text" name="uid" value="" maxlength="256"
+                           required id="id_uid"/>
                 </p>
                 <p>
-                    <label for="id_url">Url:</label>
-                    <input id="update_url" type="url" name="url" value="" maxlength="200" required id="id_url"/>
+                    <label class="pop_label">链接</label>
+                    <input class="pop_input_text" id="update_url" type="url" name="url" value="" maxlength="200"
+                           required id="id_url"/>
                 </p>
-                <div class="confirm_div">
-                    <input type="submit" value="更新"/>
-                    <button type="button" onclick="hide_bg()">取消</button>
-                </div>
+                <p>
+                    <input class="pop_input_btn" type="submit" value="更新"/>
+                    <input class="pop_input_btn" type="button" onclick="hide_bg()" value="取消"></input>
+                </p>
             </form>
         </div>
     </div>
@@ -102,11 +112,11 @@
     <div id="del_bg" class="bg_div">
         <div id="del_div">
             <form id="del_form" action="" method="post">{% csrf_token %}
-                <h4>确认删除?</h4>
-                <div class="confirm_div">
-                    <input type="submit" value="删除"/>
-                    <button type="button" onclick="hide_bg()">取消</button>
-                </div>
+                <label class="del_title">确认删除?</label>
+                <p>
+                    <input class="pop_input_btn" type="submit" value="删除"/>
+                    <input class="pop_input_btn" type="button" onclick="hide_bg()" value="取消"></input>
+                </p>
             </form>
         </div>
     </div>

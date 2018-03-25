@@ -18,7 +18,7 @@ function open_del(rid) {
 function search() {
     var uid = document.getElementById('search_input').value;
     var url = '/records/list/';
-    if (uid == null) {
+    if (uid !== null) {
         url = url + '?uid=' + uid;
     }
     window.location.href=url;
